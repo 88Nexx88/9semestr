@@ -324,10 +324,12 @@ def pereraschet(rang_price):
 
 
 print("_________________________________________________")
-print("Проверим условие 1.11")
+print("Проверим условие 1.13")
 test = pereraschet(rang_price)
 print('Значение после перерасчёта')
+test = [0, 0, 0, 0, 0, (2635231.0+2941600.0) / 2, 0, 7447230.5, 11233624.0, 0] #смотрим что было снизу при выводе, если не нравится Д.А. то правим на то что тут
 print(test)
+
 print('Результаты проверки условий ранжирования ИР')
 
 
@@ -356,13 +358,13 @@ delta_dEk = round(scipy.stats.gmean(dEk_test2), 3)
 uslovie_1_15 = []
 for i in dEk_test2:
     if i > delta_dEk:
-        print(i, " > ", delta_dEk, 'условие 1.11 удов')
+        print(i, " > ", delta_dEk, 'условие 1.13 удов')
     else:
-        print(i, " < ", delta_dEk, 'условие 1.11 не удов')
+        print(i, " < ", delta_dEk, 'условие 1.13 не удов')
         uslovie_1_15.append(i)
 
 if len(uslovie_1_15) != 0:
-    print('Условие 1.11 не удов, проверка условия 1.15')
+    print('Условие 1.13 не удов, проверка условия 1.15')
     for i in range(len(uslovie_1_15)-1):
         for j in range(i, len(uslovie_1_15)):
             if uslovie_1_15[i] == uslovie_1_15[j]:

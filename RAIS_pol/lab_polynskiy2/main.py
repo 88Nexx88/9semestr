@@ -11,33 +11,33 @@ pd.options.display.max_columns = 100
 pd.options.display.max_rows = 100
 
 
-df1 = pd.read_csv('1.csv', index_col='id')
+df1 = pd.read_csv('var6/1.csv', index_col='id')
 print(df1)
-df2 = pd.read_csv('2.csv', index_col='id')
+df2 = pd.read_csv('var6/2.csv', index_col='id')
 print(df2)
-df3 = pd.read_csv('3.csv', index_col='id')
+df3 = pd.read_csv('var6/3.csv', index_col='id')
 print(df3)
-df4 = pd.read_csv('4.csv', index_col='id')
+df4 = pd.read_csv('var6/4.csv', index_col='id')
 print(df4)
-df5 = pd.read_csv('5.csv', index_col='id')
+df5 = pd.read_csv('var6/5.csv', index_col='id')
 print(df5)
 
-df2_2 = pd.read_csv('2.2.csv', index_col='id')
+df2_2 = pd.read_csv('var6/2.2.csv', index_col='id')
 print(df2_2)
 
-df2_7 = pd.read_csv('2.7.csv', delimiter=';', index_col='id')
+df2_7 = pd.read_csv('var6/2.7.csv', delimiter=';', index_col='id')
 print(df2_7)
 
-dfcon = pd.read_csv('con1.csv', delimiter=';', index_col='id')
+dfcon = pd.read_csv('var6/con1.csv', delimiter=';', index_col='id')
 print(dfcon)
 
-dfvar = pd.read_csv('variant.csv', delimiter=';')
+dfvar = pd.read_csv('var6/variant.csv', delimiter=';')
 print(dfvar)
 
 id_uyz = []
 znach = []
 
-type = []
+type_ = []
 type_znach = []
 print('Преобразование матрицы по формуле 2.23 (гамма >= 0 /// гаммма < 0)')
 
@@ -57,11 +57,11 @@ for id, row in df1.iterrows():
         d.append(str(id)+'.'+str(i))
     for i in row.dropna():
         r.append(i)
-    type.append(d)
+    type_.append(d)
     type_znach.append(r)
-id_uyz.append(type)
+id_uyz.append(type_)
 znach.append(type_znach)
-type = []
+type_ = []
 type_znach = []
 for id, row in df2.iterrows():
     d = []
@@ -70,11 +70,11 @@ for id, row in df2.iterrows():
         d.append(str(id) + '.' + str(i))
     for i in row.dropna():
         r.append(i)
-    type.append(d)
+    type_.append(d)
     type_znach.append(r)
-id_uyz.append(type)
+id_uyz.append(type_)
 znach.append(type_znach)
-type = []
+type_ = []
 type_znach = []
 
 for id, row in df3.iterrows():
@@ -84,11 +84,11 @@ for id, row in df3.iterrows():
         d.append(str(id) + '.' + str(i))
     for i in row.dropna():
         r.append(i)
-    type.append(d)
+    type_.append(d)
     type_znach.append(r)
-id_uyz.append(type)
+id_uyz.append(type_)
 znach.append(type_znach)
-type = []
+type_ = []
 type_znach = []
 for id, row in df4.iterrows():
     d = []
@@ -97,11 +97,11 @@ for id, row in df4.iterrows():
         d.append(str(id) + '.' + str(i))
     for i in row.dropna():
         r.append(i)
-    type.append(d)
+    type_.append(d)
     type_znach.append(r)
-id_uyz.append(type)
+id_uyz.append(type_)
 znach.append(type_znach)
-type = []
+type_ = []
 type_znach = []
 
 for id, row in df5.iterrows():
@@ -111,11 +111,11 @@ for id, row in df5.iterrows():
         d.append(str(id) + '.' + str(i))
     for i in row.dropna():
         r.append(i)
-    type.append(d)
+    type_.append(d)
     type_znach.append(r)
-id_uyz.append(type)
+id_uyz.append(type_)
 znach.append(type_znach)
-type = []
+type_ = []
 type_znach = []
 
 print('все уязвимости')
@@ -152,9 +152,9 @@ for l in range(len(line_str)):
     # for type_L in range(len(line_str)):         #если без 2 этих то по типу в строчке
     #     for id_L in range(len(line_str[type_L])): #если без 2 этих то по типу в строчке
             l_znach = []
-            for type in range(len(line_str)):
-                for id in range(len(line_str[type])): #если без этго то в столбце тоже по типу
-                    l_znach.append(dfvar.loc[(dfvar['типы'] == (l+1)), str(type+1)].values[0])
+            for type_ in range(len(line_str)):
+                for id in range(len(line_str[type_])): #если без этго то в столбце тоже по типу
+                    l_znach.append(dfvar.loc[(dfvar['типы'] == (l+1)), str(type_+1)].values[0])
             line_znach_var.append(l_znach)
 
 
@@ -189,7 +189,7 @@ for i in line_str:
 for i in line:
     print(i)
 
-with open('гамма.txt', 'w') as file:
+with open('var6/гамма.txt', 'w') as file:
     for i in line:
         file.write(i)
         file.write('\n')
@@ -203,15 +203,15 @@ for l in range(len(line_str)):
     # for type_L in range(len(line_str)):         #если без 2 этих то по типу в строчке
         for id_L in range(len(line_str[l])): #если без 2 этих то по типу в строчке
             l_znach = []
-            for type in range(len(line_str)):
-                for id in range(len(line_str[type])): #если без этго то в столбце тоже по типу
-                    l_znach.append(dfvar.loc[(dfvar['типы'] == (l+1)), str(type+1)].values[0])
+            for type_ in range(len(line_str)):
+                for id in range(len(line_str[type_])): #если без этго то в столбце тоже по типу
+                    l_znach.append(dfvar.loc[(dfvar['типы'] == (l+1)), str(type_+1)].values[0])
             all_znach.append(l_znach)
 
 line_one_m = []
-for type in range(len(line_str)):
-    for id in range(len(line_str[type])):
-        line_one_m.append(line_str[type][id])
+for type_ in range(len(line_str)):
+    for id in range(len(line_str[type_])):
+        line_one_m.append(line_str[type_][id])
 
 
 gamma_m = pd.DataFrame(data=all_znach, columns=line_one_m, index=line_one_m)
@@ -222,13 +222,16 @@ print('Матрица ПСС по варианту')
 
 pps_m = pd.DataFrame()
 
-for type in line_str:
-    for id in type:
+for type_ in line_str:
+    for id in type_:
         r = dfcon.loc[dfcon[id] == '+', id]
         pps_m = pd.concat([pps_m, r], axis=1, names=[id])
 
 pps_m.replace(to_replace=numpy.nan, value=0, inplace=True)
 pps_m.replace(to_replace='+', value=1, inplace=True)
+pps_m = pps_m.reset_index()
+pps_m.sort_values('index', inplace=True)
+pps_m = pps_m.set_index("index")
 webbrowser.open(View.View(pps_m, 'pps_m.html'))
 # pps_m.to_csv('pps_m.csv')
 
@@ -293,7 +296,7 @@ for i, row in m_ugroz.iterrows():
     # time.sleep(5)
     count+=1
     pred_dict[i] = r
-zad_group = 3
+zad_group = 4
 # zad_group = 5
 m_pred = pd.DataFrame(data=pred_dict.values(), index=pred_dict.keys())
 zad_num = int(round(len(m_pred.index) / zad_group, 0))
@@ -382,16 +385,18 @@ m_pred_group = pd.DataFrame(data=dict_group_f.values(), index=dict_group_f.keys(
 webbrowser.open(View.View(m_pred_group, 'm_pred_group.html'))
 print(m_ugroz.index.values)
 print(list_group_f)
-
+more_res = []
 for i in m_ugroz.index.values:
     min = 1000
     min_j = 0
     if i not in list_group_f:
         for j in m_pred.index.values:
-            if m_ugroz.loc[i].loc[j] < min:
+            if (m_ugroz.loc[i].loc[j] < min) and j not in more_res:
                 min_j = j
                 min = m_ugroz.loc[i].loc[j]
         print(min_j, i, min)
+        if len(dict_group_f[min_j]) + 1 == 10:
+            more_res.append(min_j)
         dict_group_f[min_j] = numpy.append(dict_group_f[min_j], i)
 m_pred_group = pd.DataFrame(data=dict_group_f.values(), index=dict_group_f.keys())
 print(m_pred_group)

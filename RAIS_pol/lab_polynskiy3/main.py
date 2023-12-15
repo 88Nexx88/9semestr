@@ -8,7 +8,7 @@ pd.set_option('display.max_columns',  1000)
 
 treb = pd.read_csv('treb.csv')
 
-lab3 = pd.read_csv('lab3.csv', delimiter=';', index_col='index')
+lab3 = pd.read_csv('var6/lab3.csv', delimiter=';', index_col='index')
 
 print(treb)
 
@@ -82,18 +82,18 @@ print('''
 Построить отображение нечёткого множества A в универсальном множестве Y согласно функции f(x) и вычислить кардинальное число полученного нечёткого множества.
 ''')
 # y = range(int(lab3['y'].iloc[0].split('_')[0]), int(lab3['y'].iloc[0].split('_')[1]))
-df_fun_Y = pd.DataFrame(index=range(3, 21))
+
 y = [int(lab3['y'].iloc[0].split('_')[0]), int(lab3['y'].iloc[0].split('_')[1])]
+df_fun_Y = pd.DataFrame(index=range(y[0], y[1]+1))
 print(f'y=[{y}]')
 fx = lab3['fx'].iloc[0].split(' = ')[1]
 print(f'fx={fx}')
-u_Y = [0 for i in range(0, 21)]
+u_Y = [0 for i in range(0, y[1]+1)]
 for x in lab3['x'].values:
     # print(f'{fx} при x={x} = {eval(fx)}')
     if (eval(fx) >= y[0]) and (eval(fx) <= y[-1]):
         u_Y[eval(fx)] = lab3['A'].loc[lab3['x'] == x].values[0]
-print(u_Y)
-df_fun_Y['Y'] = u_Y[3:21]
+df_fun_Y['Y'] = u_Y[y[0]:]
 df_fun_Y['Y'] = df_fun_Y['Y']
 df_fun_Y['кард_Y'] = df_fun_Y['Y'].sum()
 print(df_fun_Y)
