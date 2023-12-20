@@ -12,8 +12,10 @@ def return_I_g(year):
         years = ['2019', '2020', '2021']
     elif year == 2020:
         years = ['2020', '2021']
-    else:
+    elif year == 2021:
         years = ['2021']
+    else:
+        return 1
     Ig = 1
     for i in years:
         Ig*=return_k_years(i)
@@ -32,6 +34,7 @@ def calc_razr(list_S_baz, years, ir_num):
             print('S_nak {:d} Год {:s} S_baz {:.0f} S_nak(i-1) {:.0f} I(i-1) {:.2f}'.format(ir_num+1, years[i], list_S_baz[years[i]], S_nak[i-1], return_k_years(years[i-1])))
             S_nak.append(list_S_baz[years[i]]+S_nak[i-1]*return_k_years(years[i-1]))
     print('S_nak по годам', S_nak)
+    # print(f"{S_nak[-1]}\n{return_I_g(int(years[-1]))}\n{type_ir['текущий'].iloc[ir_num]}\n{(1 - ((type_ir['текущий'].iloc[ir_num] - 1) / (type_ir['планируемый'].iloc[ir_num])))}")
     S_raz = S_nak[-1] * return_I_g(int(years[-1])) * (1 - ((type_ir['текущий'].iloc[ir_num] - 1)
                                      /
                                      (type_ir['планируемый'].iloc[ir_num])))
@@ -49,15 +52,15 @@ def calc_priob(priob_nach, year, ir_num):
     print('{:d} ИР приобрет = {:.0f}'.format(ir_num+1, round(S_priobr, 0)))
     return round(S_priobr, 0)
 
-
+var = '6var'
 rang_ir = pd.read_csv("rang_ir.csv")
-type_ir = pd.read_csv("6var\\type_ir.csv")
+type_ir = pd.read_csv(var+"/type_ir.csv")
 price_all = numpy.zeros(8)
 print(price_all)
 print()
 print()
 
-filename = '6var\\1ir.csv'
+filename = var+'/1ir.csv'
 with open(filename, 'r', encoding='utf-8') as f:
     lines = f.read().splitlines()
     ir_num = 0 # 1 ir = 0    2 ir = 1 itd
@@ -99,7 +102,7 @@ price_all[ir_num] = Stoim_ir1
 print()
 print()
 
-filename = '6var\\2ir.csv'
+filename = var+'/2ir.csv'
 with open(filename, 'r', encoding='utf-8') as f:
     lines = f.read().splitlines()
     ir_num = 1 # 1 ir = 0    2 ir = 1 itd
@@ -141,7 +144,7 @@ price_all[ir_num] = Stoim_ir2
 print()
 print()
 
-filename = '6var\\3ir.csv'
+filename = var+'/3ir.csv'
 with open(filename, 'r', encoding='utf-8') as f:
     lines = f.read().splitlines()
     ir_num = 2 # 1 ir = 0    2 ir = 1 itd
@@ -184,7 +187,7 @@ price_all[ir_num] = Stoim_ir3
 print()
 print()
 
-filename = '6var\\4ir.csv'
+filename = var+'/4ir.csv'
 with open(filename, 'r', encoding='utf-8') as f:
     lines = f.read().splitlines()
     ir_num = 3 # 1 ir = 0    2 ir = 1 itd
@@ -226,7 +229,7 @@ price_all[ir_num] = Stoim_ir4
 print()
 print()
 
-filename = '6var\\5ir.csv'
+filename = var+'/5ir.csv'
 with open(filename, 'r', encoding='utf-8') as f:
     lines = f.read().splitlines()
     ir_num = 4 # 1 ir = 0    2 ir = 1 itd
@@ -270,15 +273,15 @@ print()
 print()
 count = 1
 for i in price_all:
-    print(count, i)
+    print(f"{count} --- {i}")
     count+=1
 
 
 
 info_ir = pd.DataFrame(columns=['price'], data=price_all)
 info_ir['rang'] = rang_ir['Ранг']
-print("_________________________________________________")
-print("_________________________________________________")
+print("#####################################")
+print("#####################################")
 rang_price = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 for i in range(1, 9):
     rang_price[i] = info_ir['price'].loc[info_ir['rang'] == i].mean()
@@ -290,10 +293,10 @@ for i in range(len(rang_price)):
 print('Значение по рангам')
 count = 0
 for i in rang_price:
-    print(count, i)
+    print(f"{count} --- {i}")
     count+=1
 
-#_______________________________________________________________________________________________________________________
+###########################################################################_____________________
 def custom_sort(arr):
     zero_indexes = [i for i, v in enumerate(arr) if v == 0]
     non_zero_elements = [v for v in arr if v != 0]
@@ -312,7 +315,7 @@ def pereraschet(rang_price):
             for j in range(i, len(rang_price)):
                 if rang_price[j] != 0:
                     if rang_price[i] > rang_price[j]:
-                        print('Условие не выполнено перерасчёт')
+                        print('Выполяется перерасчёт, так как условие не выполнено')
                         new_rang_price = custom_sort(rang_price)
                         break_point = 1
                         break
@@ -323,11 +326,11 @@ def pereraschet(rang_price):
 
 
 
-print("_________________________________________________")
-print("Проверим условие 1.13")
+print("#####################################")
+print("Проверка условия 1.13")
 test = pereraschet(rang_price)
-print('Значение после перерасчёта')
-test = [0, 0, 0, 0, 0, (2635231.0+2941600.0) / 2, 0, 7447230.5, 11233624.0, 0] #смотрим что было снизу при выводе, если не нравится Д.А. то правим на то что тут
+print('Значение после перерасчёта:\n\n')
+# test = [0, 0, 0, 0, 0, (2635231.0+2941600.0) / 2, 0, 7447230.5, 11233624.0, 0] #смотрим что было снизу при выводе, если не нравится Д.А. то правим на то что тут
 print(test)
 
 print('Результаты проверки условий ранжирования ИР')
@@ -350,7 +353,7 @@ print(stup_rosta)
 # dEk_rang_test =  [round(scipy.stats.gmean(stup_rosta['dEk'].loc[stup_rosta['first'] == f]), 3) for f in stup_rosta['first'].unique()]
 # print(dEk_rang_test)
 # print(round(scipy.stats.gmean(dEk_rang_test), 3))
-print('____________________________________________')
+print('#####################################')
 dEk_test2 = [stup_rosta['dEk'].loc[stup_rosta['first'] == i].values[0] for i in stup_rosta['first'].unique()]
 print(dEk_test2)
 print(round(scipy.stats.gmean(dEk_test2), 3))
@@ -376,7 +379,7 @@ if len(uslovie_1_15) != 0:
             else: print('Условие 1.15 не выполнено, перерасчёт, первая часть', uslovie_1_15[i], uslovie_1_15[j])
 
 
-print("_________________________________________________")
+print("#####################################")
 
 
 print('Результаты расчёта ступеней роста стоимости ИР')
@@ -386,7 +389,7 @@ print(stup_rosta)
 dEk_mean = round(scipy.stats.gmean(stup_rosta['dEk']), 3)
 print('Средне геом: ',dEk_mean)
 
-print("_________________________________________________")
+print("#####################################")
 rang_price = test
 
 def a_(Er1, dE, X):
@@ -448,7 +451,7 @@ for i in rang_ir['Ранг']:
         last_rang_price[i] = rang_price[i]
 
 print()
-print("_________________________________________________")
+print("#####################################")
 index = 0
 for i in last_rang_price:
     print('Ранг ',index, 'Стоимость ', i)
@@ -457,7 +460,7 @@ for i in last_rang_price:
 count = 1
 for i in price_all:
     if i != 0:
-        print(count, i)
+        print(f"{count} --- {i}")
     else:
-        print(count, last_rang_price[rang_ir['Ранг'].iloc[count-1]])
+        print(f"{count} --- {last_rang_price[rang_ir['Ранг'].iloc[count - 1]]}")
     count+=1

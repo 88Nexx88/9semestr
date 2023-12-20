@@ -54,7 +54,7 @@ price_all_ir = [0, 0, 0, 0, 0, 0, 0, 0]
 rang_ir = pd.read_csv("rang_ir.csv")
 print(rang_ir)
 print()
-type_ir = pd.read_csv("type_ir.csv")
+type_ir = pd.read_csv("3var/type_ir.csv")
 print(type_ir)
 print()
 info_1 = pd.read_csv("1ir.csv")
