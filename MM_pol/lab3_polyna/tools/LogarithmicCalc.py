@@ -40,7 +40,7 @@ class LogarithmicCalc:
         table_rows = [*self.all_calc, *result_rows]
         headers_table = ['Основание лог', 'b1', 'b0', 'Коэффициент детерминации']
         main_table = tabulate(table_rows, headers_table)
-        wrap_table = tabulate([[main_table]], ['Логарифмическая'])
+        wrap_table = tabulate([[main_table]], ['Логарифмическая'], tablefmt='grid')
         print(wrap_table)
 
     def graphic(self, name: str):

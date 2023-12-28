@@ -1,24 +1,22 @@
 import numpy
 import pandas as pd
 
-#var3
+
 index = ['z1', 'z2', 'z3', 'z4']
-down = [9, 11, 25, -11]
-up = [24, 28, 39, 0]
-#var6
-# down = [-1, 12, 15, 25]
-# up = [17, 23, 25, 45]
+down = [9, 17, 3, 28]
+up = [20, 35, 19, 39]
+
 
 
 odekvat_check = []
 df1 = pd.DataFrame({'down' : down, 'up' : up}, index=index)
 print(df1)
 print()
-df2 = pd.read_csv('var3/lab2_2.csv', index_col='index', delimiter=';')
+df2 = pd.read_csv('var4/lab2_2.csv', index_col='index', delimiter=';')
 print(df2)
 
 
-df2_2 = pd.read_csv('var3/lab2_2.csv', index_col='index', delimiter=';')
+df2_2 = pd.read_csv('var4/lab2_2.csv', index_col='index', delimiter=';')
 
 
 for i in range(4):

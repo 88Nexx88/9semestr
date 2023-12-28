@@ -58,7 +58,7 @@ class AllModelCalc:
                       [*self.parabolic],
                       [self.hyperbolic[0], '', *self.hyperbolic[1:]]]
         headers_table = ['Тип', 'b2', 'b1', 'b0', 'Коэф детерминации']
-        main_table = tabulate(table_rows, headers_table)
+        main_table = tabulate(table_rows, headers_table, tablefmt='grid')
         print(main_table)
 
     def graphic(self, name: str):
