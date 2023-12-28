@@ -2,9 +2,9 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tabulate import tabulate
 
-from lab3_polyna.tools.coefficient_calculators import logarithmic_function_coefficients, r_squared
+from tools.coefficient_calculators import logarithmic_function_coefficients, r_squared
 
-from lab3_polyna.tools.math_functions import logarithmic_function
+from tools.math_functions import logarithmic_function
 
 
 class LogarithmicCalc:

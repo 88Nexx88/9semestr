@@ -1,12 +1,15 @@
-from lab3_polyna.tools.AllModelCalc import AllModelCalc
-from lab3_polyna.tools.LogarithmicCalc import LogarithmicCalc
+import numpy
+import numpy as np
+
+from tools.AllModelCalc import AllModelCalc
+from tools.LogarithmicCalc import LogarithmicCalc
 from data_parse import *
 
 print('''
 1 выборка
 ''')
-print('X: ', *x1)
-print('Y: ', *y1)
+print('X: ', x1)
+print('Y: ', y1)
 print()
 AC = AllModelCalc(x1, y1)
 AC.show()
@@ -15,9 +18,8 @@ AC.graphic('Первая')
 print('''
 2 выборка
 ''')
-
-print('X: ', *x2)
-print('Y: ', *y2)
+print('X: ', x2)
+print('Y: ', y2)
 print()
 AC = AllModelCalc(x2, y2)
 AC.show()
@@ -26,7 +28,6 @@ AC.graphic('Вторая')
 print('''
 3 выборка
 ''')
-
 print('X: ', *x3)
 print('Y: ', *y3)
 print()

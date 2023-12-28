@@ -104,7 +104,7 @@ print('''
 ''')
 df_aks = pd.DataFrame(index=lab3['x'])
 df_aks['A'] = lab3['A']
-df_aks['A_'] = pd.cut(df_aks['A'], bins=[0, 0.5, 1], labels=[0, 1])
+df_aks['A_'] = df_aks['A'].apply(lambda x: 1 if x >= 0.5 else 0)
 S_y = []
 for y in df_aks['A'].values:
     if y == 0 or y == 1:
@@ -129,7 +129,7 @@ for i, row in df_aks.iterrows():
 df_aks['d(A)хэм'] = 2/(len(S_y)) * sum(S_y)
 df_aks['d(A)хэм'] = df_aks['d(A)хэм'].round(4)
 df_aks['B'] = lab3['B']
-df_aks['B_'] = pd.cut(df_aks['B'], bins=[0, 0.5, 1], labels=[0, 1])
+df_aks['B_'] = df_aks['B'].apply(lambda x: 1 if x >= 0.5 else 0)
 
 S_y = []
 for y in df_aks['B'].values:

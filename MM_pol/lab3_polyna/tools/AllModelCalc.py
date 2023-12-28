@@ -2,12 +2,12 @@ import numpy as np
 from matplotlib import pyplot as plt
 from tabulate import tabulate
 
-from lab3_polyna.tools.coefficient_calculators import (liner_function_coefficients,
+from tools.coefficient_calculators import (liner_function_coefficients,
                                      parabolic_function_coefficients,
                                      hyperbolic_function_coefficients,
                                      r_squared)
 
-from lab3_polyna.tools.math_functions import (liner_function,
+from tools.math_functions import (liner_function,
                             parabolic_function,
                             hyperbolic_function)
 
@@ -43,6 +43,9 @@ class AllModelCalc:
             self.max = self.parabolic
 
         # гиперболическая
+        zero_indexes = np.where(x == 0)
+        x = np.delete(x, zero_indexes, axis=0)
+        y = np.delete(y, zero_indexes, axis=0)
         hyperbolic_function_coefficients_ = hyperbolic_function_coefficients(x, y)
         y_calc = hyperbolic_function(x, *hyperbolic_function_coefficients_)
         r2 = r_squared(y, y_calc)

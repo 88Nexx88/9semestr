@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 pd.options.display.max_columns = 100
 pd.options.display.max_rows = 100
 
-var = 'var3'
+var = 'var6'
 df1 = pd.read_csv(var+'/1.csv', index_col='id')
 print(df1)
 df2 = pd.read_csv(var+'/2.csv', index_col='id')
