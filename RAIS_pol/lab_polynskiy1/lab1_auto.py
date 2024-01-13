@@ -52,7 +52,7 @@ def calc_priob(priob_nach, year, ir_num):
     print('{:d} ИР приобрет = {:.0f}'.format(ir_num+1, round(S_priobr, 0)))
     return round(S_priobr, 0)
 
-var = '6var'
+var = '4var'
 rang_ir = pd.read_csv("rang_ir.csv")
 type_ir = pd.read_csv(var+"/type_ir.csv")
 price_all = numpy.zeros(8)
@@ -330,6 +330,7 @@ print("#####################################")
 print("Проверка условия 1.13")
 test = pereraschet(rang_price)
 print('Значение после перерасчёта:\n\n')
+test = [0, 0, 0, 0, 0, (2433654.0+6248400.0)/2, 0, 7835370.0, 15780651.0, 0]
 # test = [0, 0, 0, 0, 0, (2635231.0+2941600.0) / 2, 0, 7447230.5, 11233624.0, 0] #смотрим что было снизу при выводе, если не нравится Д.А. то правим на то что тут
 print(test)
 

@@ -14,7 +14,7 @@ async def sleep(button_print, text_elem):
     global status_paper
     global status_print
     while status_paper != 0:
-        await asyncio.sleep(3)
+        await asyncio.sleep(2)
         status_paper -= 1
         text_elem.update(f'Состояние: Бумага:{status_paper}, Печать:{status_print}')
 

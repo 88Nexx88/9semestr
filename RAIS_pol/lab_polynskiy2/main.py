@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 pd.options.display.max_columns = 100
 pd.options.display.max_rows = 100
 
-var = 'var6'
+var = 'var4'
 df1 = pd.read_csv(var+'/1.csv', index_col='id')
 print(df1)
 df2 = pd.read_csv(var+'/2.csv', index_col='id')
@@ -237,7 +237,7 @@ m_ugroz = pd.DataFrame(columns=m_p.index, index=m_p.index, data=r)
 #         if index == column:
 #             m_ugroz.loc[index, column] = np.nan
 print(m_ugroz)
-# webbrowser.open(View.View(m_ugroz, 'm_ugroz.html'))
+webbrowser.open(View.View(m_ugroz, 'm_ugroz.html'))
 r = []
 for i, row in m_ugroz.iterrows():
     r.append(sum(row) / (len(row)- 1))

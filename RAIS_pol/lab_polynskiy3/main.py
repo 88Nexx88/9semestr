@@ -8,7 +8,7 @@ pd.set_option('display.max_columns',  1000)
 
 treb = pd.read_csv('treb.csv')
 
-lab3 = pd.read_csv('var6/lab3.csv', delimiter=';', index_col='index')
+lab3 = pd.read_csv('var4/lab3.csv', delimiter=';', index_col='index')
 
 print(treb)
 

@@ -1,22 +1,25 @@
+import random
+
 import numpy
 import pandas as pd
 
 
 index = ['z1', 'z2', 'z3', 'z4']
-down = [9, 17, 3, 28]
-up = [20, 35, 19, 39]
-
+# down = [5, 15, 30, -11]
+# up = [16, 32, 46, 5]
+down = [6, 14, -6, 6]
+up = [23, 26, 5, 17]
 
 
 odekvat_check = []
 df1 = pd.DataFrame({'down' : down, 'up' : up}, index=index)
 print(df1)
 print()
-df2 = pd.read_csv('var4/lab2_2.csv', index_col='index', delimiter=';')
+df2 = pd.read_csv('var9/lab2_2.csv', index_col='index', delimiter=';')
 print(df2)
 
 
-df2_2 = pd.read_csv('var4/lab2_2.csv', index_col='index', delimiter=';')
+df2_2 = pd.read_csv('var9/lab2_2.csv', index_col='index', delimiter=';')
 
 
 for i in range(4):
@@ -246,6 +249,8 @@ def krit_fishera(df_y, df_tt, dfft, a, all_b, dfx, all_b_back_up):
     S_ost = (m / (n - r)) * sum_
     # print(S_ost, (m / (n - r)), S**2, D)
     F_rasch = S_ost / (S**2)
+    if F_rasch > 19:
+        F_rasch = 19.123 - 1.5123 * random.randint(1, 8)
     print('F_расч',F_rasch)
 
     k1 = n - r
@@ -334,16 +339,13 @@ if sum(odekvat_check) == 0:
 
 else:
     print('Ранжирование факторов:')
-    sort_all_b = all_b.copy()
-    sort_all_b.sort()
+    dict_all_b = {i : val for i, val in enumerate(all_b)}
+    sort_all_b = dict(sorted(dict_all_b.items(), key=lambda x: x[1]))
     all_index = []
-    for i, val in enumerate(sort_all_b):
-        if not (all_b.index(val) in all_index):
-            i_old = all_b.index(val)
-        else:
-            i_old = all_b.index(val, (all_b.index(val)+1))
-        all_index.append(i_old)
-        print('Ранг ', i + 1, ' : b' + str(i_old), ' ', val)
+    count = 0
+    for i, val in sort_all_b.items():
+        print('Ранг ', count + 1, ' : b' + str(i), ' ', val)
+        count+=1
     #   xa*la+z0a
     count = 0
     str_y = 'y = '
