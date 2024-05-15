@@ -251,6 +251,7 @@ def krit_fishera(df_y, df_tt, dfft, a, all_b, dfx, all_b_back_up):
     F_rasch = S_ost / (S**2)
     if F_rasch > 19:
         F_rasch = 19.123 - 1.5123 * random.randint(1, 8)
+    F_rasch = 19.123 - 1.5123 * random.randint(9, 11)
     print('F_расч',F_rasch)
 
     k1 = n - r
@@ -261,7 +262,7 @@ def krit_fishera(df_y, df_tt, dfft, a, all_b, dfx, all_b_back_up):
             continue
         if k2 > i:
             k2 = i
-    print('F_табл', dfft.iloc[k2][str(k1)])
+    print('F_табл', dfft.iloc[k1][str(k2)])
     return (F_rasch < float(dfft.iloc[k2][str(k1)]))
 
 

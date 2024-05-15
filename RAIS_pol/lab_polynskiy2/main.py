@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 pd.options.display.max_columns = 100
 pd.options.display.max_rows = 100
 
-var = 'var4'
+var = 'var5'
 df1 = pd.read_csv(var+'/1.csv', index_col='id')
 print(df1)
 df2 = pd.read_csv(var+'/2.csv', index_col='id')
@@ -290,18 +290,20 @@ for i, val in m_sred_copy.items():
     index_r = m_pred_num.loc[i].nsmallest(zad_num).index
     index_r = m_pred.loc[i].iloc[index_r].values
     ind_add = []
-    for ind in index_r:
-        if ind not in index_not_use and not pd.isna(ind):
-            index_not_use.append(ind)
-            index_not_use.append(i)
-            ind_add.append(ind)
-    result_pred_up[i] = ind_add
+    if i not in index_not_use:
+        for ind in index_r:
+            if ind not in index_not_use and not pd.isna(ind):
+                index_not_use.append(ind)
+                index_not_use.append(i)
+                ind_add.append(ind)
+        result_pred_up[i] = ind_add
 
 print(result_pred_up)
 
 
 m_pred_up = pd.DataFrame(data=result_pred_up.values(), index=result_pred_up.keys())
 m_pred_up = m_pred_up[(m_pred_up.notna().any(axis=1))]
+m_pred_up = m_pred_up.fillna('')
 webbrowser.open(View.View(m_pred_up, 'm_pred_up.html'))
 
 m_sred_copy = m_sred.copy().to_dict()['Sred_rast']
@@ -313,16 +315,18 @@ for i, val in m_sred_copy.items():
     index_r = m_pred_num.loc[i].nsmallest(zad_num).index
     index_r = m_pred.loc[i].iloc[index_r].values
     ind_add = []
-    for ind in index_r:
-        if ind not in index_not_use and not pd.isna(ind):
-            index_not_use.append(ind)
-            index_not_use.append(i)
-            ind_add.append(ind)
-    result_pred_down[i] = ind_add
+    if i not in index_not_use:
+        for ind in index_r:
+            if ind not in index_not_use and not pd.isna(ind):
+                index_not_use.append(ind)
+                index_not_use.append(i)
+                ind_add.append(ind)
+        result_pred_down[i] = ind_add
 
 print(result_pred_down)
 m_pred_down = pd.DataFrame(data=result_pred_down.values(), index=result_pred_down.keys())
 m_pred_down = m_pred_down[(m_pred_down.notna().any(axis=1))]
+m_pred_down = m_pred_down.fillna('')
 webbrowser.open(View.View(m_pred_down, 'm_pred_down.html'))
 
 dict_group_f = {}
@@ -379,6 +383,7 @@ for i in max_common_array:
 #                 list_group_f.append(d)
 #
 m_pred_group = pd.DataFrame(data=groups.values(), index=groups.keys())
+m_pred_group = m_pred_group.fillna('')
 webbrowser.open(View.View(m_pred_group, 'm_pred_group.html'))
 
 
@@ -398,4 +403,5 @@ for i in m_ugroz.index.values:
         groups[min_j] = numpy.append(groups[min_j], i)
 m_pred_group = pd.DataFrame(data=groups.values(), index=groups.keys())
 print(m_pred_group)
+m_pred_group = m_pred_group.fillna('')
 webbrowser.open(View.View(m_pred_group, 'm_pred_group2.html'))
